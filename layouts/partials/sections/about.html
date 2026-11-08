@@ -1,0 +1,36 @@
+<section id="a-propos" class="p-section col-span-full grid-body">
+    <article class="col-span-full md:col-start-1 md:col-end-8">
+        <h2 class="text-h2 text-gold-normal">À propos</h2>
+        <p class="text-body mt-8">
+            Je m'appelle Corentin Chevalier, je suis diplômé d’un BPJEPS et je mets mes compétences de coaching sportif à ton service.
+        </p>
+        <p class="text-body mt-8">
+            Ayant toujours été passionné par le sport toutes catégories confondues j’ai eu l’occasion d’en pratiquer plusieurs, des <b class="font-bold">arts martiaux</b> au Street-Workout en passant par le <b class="font-bold">Parkour</b>.
+        </p>
+        <p class="text-body mt-8">
+            J’ai donc développé un goût tout particulier pour l’effort que je souhaite te transmettre, ce qui t’aidera à atteindre tes objectifs
+        </p>
+    </article>
+
+    <div class="group order-first md:order-last col-span-3 md:col-start-8 md:col-end-13 mb-12 md:md-0">
+        {{ partial "image" (dict
+            "img" "images/handstand.jpg"
+            "opt" (dict
+                "loading" "normal"
+                "alt" ""
+                "size" "800x"
+                "class" "w-full group-hover:hidden pointer-events-none user-select-none"
+            )
+        )}}
+            {{ partial "image" (dict
+            "img" "images/front-lever.jpg"
+            "opt" (dict
+                "loading" "normal"
+                "alt" ""
+                "size" "800x"
+                "class" "w-full hidden group-hover:block pointer-events-none user-select-none"
+            )
+        )}}
+    </div>
+
+</section>

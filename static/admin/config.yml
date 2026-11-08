@@ -1,0 +1,75 @@
+backend:
+  name: git-gateway
+  branch: main
+local_backend:
+  allowed_hosts: ['192.168.1.14', '192.168.198.233']
+media_folder: 'static/media'
+public_folder: '/media'
+locale: fr
+slug:
+  encoding: ascii
+  clean_accents: true
+
+collections:
+  - name: services
+    label: Prestations
+    label_singular: Prestation
+    folder: content/services
+    create: true
+    editor: { preview: false }
+    filter: { field: visibleInCms, value: true }
+    fields:
+      - { label: Visible, name: visibleInCms, widget: hidden, default: true }
+      - { label: Brouillon, name: draft, required: false, widget: boolean }
+      - { label: Titre,  name: title, required: true }
+      - { label: Description, name: body, required: false, widget: markdown, minimal: true, buttons: [bold, link], editor_components: [], modes: [rich_text] }
+
+  - name: testimonies
+    label: Témoignages
+    label_singular: Témoignage
+    folder: content/testimonies
+    create: true
+    editor: { preview: false }
+    filter: { field: visibleInCms, value: true }
+    fields:
+      - { label: Visible, name: visibleInCms, widget: hidden, default: true }
+      - { label: Brouillon, name: draft, required: false, widget: boolean }
+      - { label: Ordre,  name: weight, required: true }
+      - { label: Nom,  name: title, required: true }
+      - { label: Témoignage, name: body, required: false, widget: markdown, minimal: true, buttons: [bold, link], editor_components: [], modes: [rich_text] }
+      - { label: Source,  name: source, required: false, hint: "Copiez le lien de partage de l'avis google" }
+
+  - name: sections
+    label: Sections
+    editor: { preview: false }
+    files:
+      - label: "Instagram"
+        name: "instagram"
+        file: "data/sections/instagram.yml"
+        fields:
+          - { label: "Url publication", name: publication_url, required: true, widget: string }
+      - label: "Tarifs à domicile"
+        name: "pricingAtHome"
+        file: "data/sections/pricingAtHome.yml"
+        fields:
+          - { label: "Bilan gratuit ?", name: isBilanFree, required: true, widget: boolean }
+          - { label: "Tarif bilan (€)", name: bilanPrice, required: true, widget: number, value_type: "float", default: 0 }
+          - { label: "Suivi alimentaire gratuit ?", name: isNutritionalMonitoringFree, required: true, widget: boolean }
+          - { label: "Tarif suivi alimentaire (€)", name: nutritionalMonitoringPrice, required: true, widget: number, value_type: "float", default: 0 }
+          - { label: "Tarif heure (€)", name: hourPrice, required: true, widget: number, value_type: "float", default: 0 }
+          - { label: "Durée séance (h)", name: sessionHoursDuration, required: true, widget: number, value_type: "float", default: 1 }
+          - { label: "Forfaits", label_singular: "Forfait", name: sessions, widget: list, collapsed: false, summary: 'Forfait {{fields.count}} séances', fields: [
+              { label: "Séances/semaine", name: count, required: true, widget: number, value_type: "float", default: 0 },
+              { label: "Séances offertes/mois", name: countOffered, required: true, widget: number, value_type: "float", default: 0 },
+              { label: "Mis en avant ?", name: isHighlighted, required: true, widget: boolean }
+            ] }
+          - { label: "Lien bouton \"Demander un bilan\"", name: askResumeLink, required: true, widget: string }
+      - label: "Tarifs en entreprise"
+        name: "pricingAtCompany"
+        file: "data/sections/pricingAtCompany.yml"
+        fields:
+          - { label: "Tarif séance (€)", name: baseSessionPrice, required: true, widget: number, value_type: "float", default: 0 }
+          - { label: "Minimum de séances", name: min, required: true, widget: number, value_type: "int", default: 1 }
+          - { label: "Granularité (ex: de 1 en 1, de 2 en 2) de séances", name: step, required: true, widget: number, value_type: "int", default: 1 }
+          - { label: "Maximum de séances", hint: "Doit être un multiple de la granularité à partir du minimum.\n Si min = 1 et granularité = 2, max peut être égal à 3 ou 5 ou 7 etc", name: max, required: true, widget: number, value_type: "int", default: 1 }
+          - { label: "Proposition par défaut de séances", name: default, required: true, widget: number, value_type: "int", default: 1 }

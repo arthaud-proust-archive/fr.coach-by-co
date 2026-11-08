@@ -1,0 +1,92 @@
+/* TailwindCSS base styles */
+/* see https://tailwindcss.com/docs/functions-and-directives#tailwind */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@tailwind variants;
+
+@layer base {
+
+    :focus-visible {
+        outline: solid theme('colors.gold.hover') 2px;
+        outline-offset: 3px;
+    }
+}
+
+@layer components {
+    .bg-gradient {
+        background: theme('colors.black.background');
+        background: linear-gradient(90deg,
+        theme('colors.black.side') 0%,
+        theme('colors.black.background') 15%,
+        theme('colors.black.background') 85%,
+        theme('colors.black.side') 100%
+        );
+    }
+    .bg-body {
+        @apply bg-black-background md:bg-gradient;
+    }
+
+    .grid-body {
+        @apply grid grid-cols-6 md:grid-cols-12 md:gap-x-12 xl:gap-x-20;
+    }
+    .p-section {
+        @apply scroll-mt-24 py-12;
+    }
+
+    .text-h1 {
+        @apply text-5xl md:text-6xl font-display font-extrabold uppercase;
+    }
+
+    .text-h2 {
+        @apply text-4xl md:text-5xl font-display font-extrabold;
+    }
+
+    .text-h3 {
+        @apply text-2xl md:text-3xl font-display font-semibold;
+    }
+
+    .text-h4 {
+        @apply text-xl md:text-2xl font-display font-semibold;
+    }
+
+    .text-body {
+        @apply text-xl font-sans font-light;
+    }
+
+    .text-cta {
+        @apply text-xl font-sans font-medium;
+    }
+
+    .text-label {
+        @apply text-lg font-sans font-light;
+    }
+
+    .btn {
+        @apply text-cta text-gold-normal border px-8 py-3 relative transition-colors duration-200;
+    }
+    .btn::after {
+        content: '';
+        @apply block absolute bottom-0 left-0 h-0 w-full bg-gold-normal transition-all delay-200 duration-200 mix-blend-difference;
+    }
+    .btn:hover::after, [aria-checked="true"].btn::after {
+        @apply h-full bottom-auto top-0;
+    }
+
+    .link {
+        @apply relative;
+    }
+    .link::after {
+        content: '';
+        @apply absolute right-0 bottom-0 h-[1%] w-0 bg-gold-normal transition-all duration-300;
+    }
+    .link:hover::after,
+    a:hover .link::after {
+        @apply w-full right-auto left-0;
+    }
+
+    .link-visible::before {
+        content: '';
+        @apply absolute right-0 bottom-0 w-full h-[1%] bg-gold-disabled;
+    }
+}

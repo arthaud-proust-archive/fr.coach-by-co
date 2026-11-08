@@ -1,0 +1,50 @@
+languageCode: 'fr'
+baseURL: https://coachbyco.arthaud.dev
+removePathAccents: true
+
+params:
+  contact:
+    whatsapp:
+      content: "** ** ** ** **"
+      prefix: "tel:"
+    facebook:
+      content: ""
+      prefix: https://www.facebook.com/
+    instagram:
+      content: ""
+      prefix: https://www.instagram.com/
+    email:
+      content: ******@***.***
+      prefix: "mailto:"
+  seo:
+    author: Coach by Co
+    title: Coach by Co - Coach sportif à Bordeaux
+    desc: "Coach sportif à Bordeaux, je t'aide à transformer ton corps et atteindre tes objectifs pour te sentir mieux et vivre sans contrainte."
+    url: https://coachbyco.arthaud.dev
+    hero: /sprites/hero-min.jpg
+    logo: /sprites/logo-min.png
+    links:
+      facebook: https://www.facebook.com/
+      instagram: https://www.instagram.com/
+      linkedin: https://www.linkedin.com/
+
+taxonomies:
+
+menu:
+  main:
+    - name: Prestations
+      pre: prestations
+      url: "/#prestations"
+      weight: 2
+    - name: À domicile
+      pre: tarifs-a-domicile
+      url: "/#tarifs-a-domicile"
+      weight: 3
+    - name: En entreprise
+      pre: tarifs-en-entreprise
+      url: "/#tarifs-en-entreprise"
+      weight: 4
+    - name: Contact
+      pre: contact
+      url: "/#contact"
+      weight: 5
