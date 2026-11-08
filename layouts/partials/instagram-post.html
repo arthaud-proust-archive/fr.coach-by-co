@@ -1,7 +1,7 @@
 {{ $iframelyApiKey := .Site.Params.iframelyApiKey }}
 {{ $postUrl := .Site.Data.sections.instagram.publication_url}}
 {{ $url := printf "%s" $iframelyApiKey | printf "%s&api_key=%s" $postUrl | printf "https://iframe.ly/api/oembed?url=%s" }}
-{{ $response := getJSON $url}}
+{{ $response := dict }}{{ with resources.GetRemote $url }}{{ with .Err }}{{ warnf "%s" . }}{{ else }}{{ $response = . | transform.Unmarshal }}{{ end }}{{ end }}
 {{ $thumbnail := partial "func/FetchUrl" $response.thumbnail_url }}
 {{ $title := $response.title }}
 {{ $content := index (split $title "on Instagram:") 1}}
